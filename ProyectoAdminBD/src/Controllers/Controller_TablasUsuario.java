@@ -193,11 +193,11 @@ public class Controller_TablasUsuario {
             }
             // Assign the nre items to the list
             comentariosLista.getChildren().add(tableComments);
-            // Query to get  the type of the attributes of the table
 
         }catch (SQLException ex){
             System.out.println(ex.toString());
         }finally{
+            // Close connections
             if(rs != null) rs.close();
             if(ps != null) ps.close();
             if(conex != null)conex.close();
@@ -206,7 +206,42 @@ public class Controller_TablasUsuario {
 
     @FXML
     private void selectColumn(ActionEvent event) throws SQLException {
-        // Get the comments on the column
+        // Get the column selected
+        selectedColumn = seleccionarColumna.getValue();
+        // Stablish connection
+        Connection conex = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            /**
+             * Query to get  the type of the attributes of the table
+             */
+            conex = conexion.getConnection();
+            ps = conex.prepareStatement("SELECT DATA_TYPE FROM all_tab_columns WHERE OWNER = ? AND TABLE_NAME = ? AND COLUMN_NAME = ?");
+            ps.setString(1, selectedUser);
+            ps.setString(2, selectedTable);
+            ps.setString(3, selectedColumn);
+            rs = ps.executeQuery();
+            // Object to store results
+            ListView tipoDato = new ListView();
+            // Clear the items if exists
+            if (tipoDatoAtributosLista.getChildren().size() > 0) {
+                tipoDatoAtributosLista.getChildren().clear();
+            }
+            // Traverse results object
+            while (rs.next()) {
+                tipoDato.getItems().add(rs.getString("DATA_TYPE"));
+            }
+            // Assign items to the list
+            tipoDatoAtributosLista.getChildren().add(tipoDato);
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        } finally {
+            // Close connections
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (conex != null) conex.close();
+        }
     }
 
 }

@@ -10,10 +10,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import oracle.jdbc.OracleDriver;
 
-/**
- *
- * @author Juan
- */
 public class conexion {
     public static Connection getConnection() throws SQLException{
         String username= "USUARIO1";
