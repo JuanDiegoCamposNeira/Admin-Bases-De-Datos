@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ProyectoAdminBD">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/ProyectoAdminBD.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Controller_Inicio">
+   <children>
+      <Button fx:id="tablasUsuario" defaultButton="true" layoutX="42.0" layoutY="104.0" mnemonicParsing="false" onAction="#onClick_TablasUsuario" prefHeight="73.0" prefWidth="133.0" text="Tablas de Usuario" textFill="#47525e" />
+      <Button fx:id="tablasPermisosDeUsuario" defaultButton="true" layoutX="213.0" layoutY="104.0" mnemonicParsing="false" onAction="#onClick_TablasPermisosDeUsuario" prefHeight="73.0" prefWidth="133.0" text="Tablas y permisos de Usuario" textAlignment="CENTER" textFill="#47525e" wrapText="true" />
+      <Button fx:id="jobs" defaultButton="true" layoutX="389.0" layoutY="104.0" mnemonicParsing="false" onAction="#onClick_Jobs" prefHeight="73.0" prefWidth="133.0" text="Jobs" textFill="#47525e" />
+      <Button fx:id="tablespace" defaultButton="true" layoutX="42.0" layoutY="234.0" mnemonicParsing="false" onAction="#onClick_Tablespace" prefHeight="73.0" prefWidth="133.0" text="Tablespace" textFill="#47525e" wrapText="true" />
+      <Button fx:id="paquetesFuncionesProcedimientos" defaultButton="true" layoutX="213.0" layoutY="234.0" mnemonicParsing="false" onAction="#onClick_PaquetesFuncionesProcedimientos" prefHeight="73.0" prefWidth="133.0" text="Paquetes, funciones y procedimientos" textAlignment="CENTER" textFill="#47525e" wrapText="true" />
+      <Button fx:id="espacioUtilizado" defaultButton="true" layoutX="389.0" layoutY="234.0" mnemonicParsing="false" onAction="#onClick_EspacioUtilizado" prefHeight="73.0" prefWidth="133.0" text="Espacio utilizado por el Usuario" textAlignment="CENTER" textFill="#47525e" wrapText="true" />
+   </children>
+</Pane>

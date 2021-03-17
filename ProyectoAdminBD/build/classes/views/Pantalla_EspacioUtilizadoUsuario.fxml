@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Controller_EspacioUtilizadoPorUsuario">
+   <children>
+      <Label layoutX="120.0" layoutY="30.0" text="Espacio utilizado por cada usuario" textFill="#1c39df">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TableView layoutX="88.0" layoutY="94.0" prefHeight="250.0" prefWidth="424.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="ID" />
+          <TableColumn prefWidth="175.20001220703125" text="Nombre usuario" />
+            <TableColumn prefWidth="172.79998779296875" text="Espacio utilizado" />
+        </columns>
+      </TableView>
+      <Button fx:id="atras" layoutX="29.0" layoutY="18.0" mnemonicParsing="false" onAction="#onClick_Atras" text="Atrás" />
+   </children>
+</AnchorPane>
