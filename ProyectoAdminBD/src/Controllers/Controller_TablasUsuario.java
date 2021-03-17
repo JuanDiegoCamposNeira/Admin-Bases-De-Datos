@@ -206,12 +206,15 @@ public class Controller_TablasUsuario {
 
     @FXML
     private void selectColumn(ActionEvent event) throws SQLException {
-        // Get the column selected
-        selectedColumn = seleccionarColumna.getValue();
         // Stablish connection
         Connection conex = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+        /**
+         * Query to get the data type of the selected column
+         */
+        // Get the selected column
+        selectedColumn = seleccionarColumna.getValue();
         try {
             /**
              * Query to get  the type of the attributes of the table
@@ -242,6 +245,38 @@ public class Controller_TablasUsuario {
             if (ps != null) ps.close();
             if (conex != null) conex.close();
         }
+
+        /**
+         * Query to get the comments of the selected column
+         */
+        try {
+            // Get the connection
+            conex = conexion.getConnection();
+            // Prepare SQL statement
+            ps = conex.prepareStatement("SELECT COMMENTS FROM all_col_comments WHERE OWNER = ? AND TABLE_NAME = ? AND COLUMN_NAME = ? AND COMMENTS IS NOT NULL");
+            // Add parameters to the query
+            ps.setString(1, selectedUser);
+            ps.setString(2, selectedTable);
+            ps.setString(3, selectedColumn);
+            // Execute query
+            rs = ps.executeQuery();
+            // Create variable to store query results
+            ListView comentariosColumna = new ListView();
+            // Traverse results object
+            while (rs.next()) comentariosColumna.getItems().add(rs.getString("COMMENTS"));
+            // Clear items in VBox
+            comentariosColumnaLista.getChildren().clear();
+            // Add the new comments
+            comentariosColumnaLista.getChildren().add(comentariosColumna);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close connections
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (conex != null) conex.close();
+        }
     }
+
 
 }
