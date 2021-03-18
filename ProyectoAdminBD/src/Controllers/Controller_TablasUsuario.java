@@ -1,54 +1,44 @@
 package Controllers;
 
+import Entities.Tabla;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import Main.Main;
 import acceso_datos.conexion;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
+
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class Controller_TablasUsuario {
 
-    @FXML
-    private AnchorPane tablasDeUsuario;
-    @FXML
-    private ComboBox<String> seleccionarTabla;
-    @FXML
-    private Pane restriccionesTabla;
-    @FXML
-    private VBox restriccionesLista;
-    @FXML
-    private Pane comentariosTabla;
-    @FXML
-    private VBox comentariosLista;
-    @FXML
-    private ComboBox<String> seleccionarColumna;
-    @FXML
-    private TableView<?> tablaIndices;
-    @FXML
-    private Pane tipoDatoAtributos;
-    @FXML
-    private VBox tipoDatoAtributosLista;
-    @FXML
-    private Pane comentariosColumna;
-    @FXML
-    private VBox comentariosColumnaLista;
-    @FXML
-    private ComboBox<String> seleccionarUsuario;
-    @FXML
-    private Button atras;
+    @FXML private AnchorPane tablasDeUsuario;
+    @FXML private ComboBox<String> seleccionarTabla;
+    @FXML private Pane restriccionesTabla;
+    @FXML private VBox restriccionesLista;
+    @FXML private Pane comentariosTabla;
+    @FXML private VBox comentariosLista;
+    @FXML private ComboBox<String> seleccionarColumna;
+    @FXML private TableView<Tabla> tablaIndices;
+    @FXML private TableColumn<Tabla, String> columnIndex;
+    @FXML private TableColumn<Tabla, String> columnField;
+    @FXML private Pane tipoDatoAtributos;
+    @FXML private VBox tipoDatoAtributosLista;
+    @FXML private Pane comentariosColumna;
+    @FXML private VBox comentariosColumnaLista;
+    @FXML private ComboBox<String> seleccionarUsuario;
+    @FXML private Button atras;
     
     private List<String> usernames = new ArrayList<>();
     private List<String> tableNames = new ArrayList<>();
@@ -202,6 +192,44 @@ public class Controller_TablasUsuario {
             if(ps != null) ps.close();
             if(conex != null)conex.close();
         }
+
+        /**
+         * Query to get the index of the table selected
+         */
+        // Set the type for column 'Index'
+        columnIndex.setCellValueFactory(new PropertyValueFactory<>("Index"));
+        // Set the type for column 'Field'
+        columnField.setCellValueFactory(new PropertyValueFactory<>("Field"));
+        try {
+            // Stablish connection
+            conex = conexion.getConnection();
+            // Prepare sql query
+            ps = conex.prepareStatement("SELECT INDEX_NAME, TABLE_NAME, COLUMN_NAME  FROM ALL_IND_COLUMNS WHERE INDEX_OWNER = ? AND TABLE_NAME = ?");
+            // Set query arguments
+            ps.setString(1, selectedUser);
+            ps.setString(2, selectedTable);
+            // Execute query
+            rs = ps.executeQuery();
+            // Create Array to store results
+            ArrayList<Tabla> indices = new ArrayList<Tabla>();
+            // Traverse query results
+            while (rs.next()) {
+                indices.add(new Tabla(rs.getString("INDEX_NAME"), rs.getString("COLUMN_NAME")));
+            }
+            // Clear previous items in table
+            tablaIndices.getItems().clear();
+            // Add query results in the table
+            for (Tabla row : indices) {
+                tablaIndices.getItems().add(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close connections
+            if(rs != null) rs.close();
+            if(ps != null) ps.close();
+            if(conex != null)conex.close();
+        }
     }
 
     @FXML
@@ -277,6 +305,4 @@ public class Controller_TablasUsuario {
             if (conex != null) conex.close();
         }
     }
-
-
 }

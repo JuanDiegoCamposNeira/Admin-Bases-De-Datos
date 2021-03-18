@@ -14,16 +14,11 @@ public class Controller_Inicio {
     // Constructor
     public Controller_Inicio() {}
 
-    @FXML
-    private Button tablasPermisosDeUsuario;
-    @FXML
-    private Button jobs;
-    @FXML
-    private Button tablespace;
-    @FXML
-    private Button paquetesFuncionesProcedimientos;
-    @FXML
-    private Button espacioUtilizado;
+    @FXML private Button tablasPermisosDeUsuario;
+    @FXML private Button jobs;
+    @FXML private Button tablespace;
+    @FXML private Button paquetesFuncionesProcedimientos;
+    @FXML private Button espacioUtilizado;
 
     /****************************************
      *  Methods for the events of the buttons
