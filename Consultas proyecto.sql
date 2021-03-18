@@ -1,9 +1,14 @@
 -- Create the user
 alter session set "_ORACLE_SCRIPT"=true;
 CREATE USER USUARIO1 IDENTIFIED BY "USUARIOPRUEBA";
--- Grant acces to create the session
-GRANT CREATE SESSION TO USUARIO1 WITH ADMIN OPTION; 
-GRANT CREATE TABLE TO USUARIO1; 
+-- Grant acces 
+GRANT DBA TO USUARIO1; 
+
+-- Create second user
+CREATE USER USUARIO2 IDENTIFIED BY "USUARIOPRUEBA";
+-- Grant access
+GRANT CREATE SESSION TO USUARIO2;
+GRANT SELECT_CATALOG_ROLE TO USUARIO2;
 
 --------------------------------------------------------------------------------
 -----------------------------PUNTO 1--------------------------------------------
@@ -55,9 +60,9 @@ SELECT OWNER, JOB_NAME, JOB_CLASS, COMMENTS, ENABLED, CREDENTIAL_NAME, DESTINATI
 FROM ALL_SCHEDULER_JOBS;
 
 --Deshabilitar el job
-EXECUTE dbms_scheduler.disable('MI_PRIMER_JOB');
+EXECUTE dbms_scheduler.disable('ORACLE_OCM.MGMT_CONFIG_JOB');
 --Habilitar el job
-EXECUTE dbms_scheduler.enable('MI_PRIMER_JOB');
+EXECUTE dbms_scheduler.enable('ORACLE_OCM.MGMT_CONFIG_JOB');
 
 --------------------------------------------------------------------------------
 -----------------------------PUNTO 4--------------------------------------------
