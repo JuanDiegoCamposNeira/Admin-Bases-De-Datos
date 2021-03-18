@@ -12,9 +12,11 @@ import oracle.jdbc.OracleDriver;
 
 public class conexion {
     public static Connection getConnection() throws SQLException{
-        String username= "USUARIO1";
-        String password= "USUARIOPRUEBA";
-        String thinConn= "jdbc:oracle:thin:@localhost:1521:XE";
+        String username = "USUARIO1";
+        String password = "USUARIOPRUEBA";
+        // String username= "SYSTEM";
+        // String password= "1000251685";
+        String thinConn = "jdbc:oracle:thin:@localhost:1521:XE";
         DriverManager.registerDriver(new OracleDriver());
         Connection conn= DriverManager.getConnection(thinConn, username, password);
         conn.setAutoCommit(false);

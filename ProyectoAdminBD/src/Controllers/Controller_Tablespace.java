@@ -7,15 +7,15 @@ import javafx.scene.control.Button;
 
 import java.io.IOException;
 
-public class Controller_EspacioDeCadaTabla {
+public class Controller_Tablespace {
     // Constructor
-    public Controller_EspacioDeCadaTabla() {}
+    public Controller_Tablespace() {}
 
     /**
      * Get the elements in the view
      */
-    @FXML
-    private Button atras;
+    @FXML private Button atras;
+
 
     /**
      * Methods for the elements

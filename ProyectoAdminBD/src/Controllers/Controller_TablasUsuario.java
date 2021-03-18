@@ -3,13 +3,11 @@ package Controllers;
 import Entities.Tabla;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import Main.Main;
 import acceso_datos.conexion;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -59,7 +57,6 @@ public class Controller_TablasUsuario {
             while(rs.next()){
                 usernames.add(rs.getString("USERNAME"));
             }
-            
         }catch (SQLException ex){
             System.out.println(ex.toString());
         }finally{
@@ -68,10 +65,12 @@ public class Controller_TablasUsuario {
             if(conex != null) conex.close();
         }
     }
-    
+
+    @FXML
     public void initialize() {
         addUsers();
     }
+
     /**
      * Methods for the elements
      */
@@ -106,6 +105,7 @@ public class Controller_TablasUsuario {
 
     @FXML
     private void selectUser(ActionEvent event) throws SQLException {
+        System.out.println("Method triggered");
         selectedUser = seleccionarUsuario.getValue();
         Connection conex = null;
         PreparedStatement ps = null;

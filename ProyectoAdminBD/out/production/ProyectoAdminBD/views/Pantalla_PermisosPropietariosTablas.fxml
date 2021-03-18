@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,20 +14,16 @@
          <font>
             <Font name="Yu Gothic Medium" size="22.0" />
          </font></Label>
-      <MenuButton fx:id="seleccionarUsuario" layoutX="10.0" layoutY="138.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="159.0" text="Seleccione un usuario">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
-        </items>
-      </MenuButton>
       <Button fx:id="atras" layoutX="23.0" layoutY="27.0" mnemonicParsing="false" onAction="#onClick_Atras" text="Atrás" />
-      <TableView layoutX="196.0" layoutY="138.0" prefHeight="284.0" prefWidth="425.0">
+      <TableView fx:id="TablaPPT" layoutX="196.0" layoutY="138.0" prefHeight="284.0" prefWidth="425.0">
         <columns>
-          <TableColumn prefWidth="111.0" text="Nombre Tabla" />
-            <TableColumn prefWidth="104.0" text="Columna" />
-            <TableColumn prefWidth="93.0" text="Permisos" />
-            <TableColumn prefWidth="116.0" text="Propietario" />
+          <TableColumn fx:id="NombreTabla" prefWidth="111.0" text="Nombre Tabla" />
+            <TableColumn fx:id="ColumnaTabla" prefWidth="104.0" text="Columna" />
+            <TableColumn fx:id="PermisosTabla" prefWidth="93.0" text="Permisos" />
+            <TableColumn fx:id="PropietarioTabla" prefWidth="116.0" text="Propietario" />
         </columns>
       </TableView>
+      <ComboBox fx:id="seleccioneUsuario" layoutX="23.0" layoutY="125.0" onAction="#selectUser" prefWidth="150.0" promptText="Seleccione un usuario" />
     </children>
 </AnchorPane>
+

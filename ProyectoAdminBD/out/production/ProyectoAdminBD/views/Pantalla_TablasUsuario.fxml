@@ -34,8 +34,8 @@
             <ComboBox fx:id="seleccionarColumna" layoutX="14.0" layoutY="269.0" onAction="#selectColumn" prefHeight="27.0" prefWidth="181.0" promptText="Seleccione una columna" />
             <TableView fx:id="tablaIndices" layoutX="213.0" layoutY="136.0" prefHeight="125.0" prefWidth="425.0">
               <columns>
-                <TableColumn prefWidth="142.0" text="Índice" />
-                <TableColumn prefWidth="282.0" text="Campos" />
+                <TableColumn fx:id="columnIndex" prefWidth="142.0" text="Índice" />
+                <TableColumn fx:id="columnField" prefWidth="282.0" text="Campos" />
               </columns>
             </TableView>
             <Pane fx:id="tipoDatoAtributos" layoutX="211.0" layoutY="269.0" prefHeight="111.0" prefWidth="210.0" style="-fx-border-color: #000000; -fx-border-radius: 6;">

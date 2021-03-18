@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controllers;
 
 import Main.Main;
@@ -25,31 +20,18 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-/**
- * FXML Controller class
- *
- * @author Santiago Bermudez
- */
-public class Controller_PermisosPropietariosTablas implements Initializable {
+public class Controller_PermisosPropietariosTablas {
 
-    @FXML
-    private Label label;
-    @FXML
-    private Button atras;
-    @FXML
-    private TableView<?> TablaPPT;
-    @FXML
-    private TableColumn<?, ?> NombreTabla;
-    @FXML
-    private TableColumn<?, ?> ColumnaTabla;
-    @FXML
-    private TableColumn<?, ?> PermisosTabla;
-    @FXML
-    private TableColumn<?, ?> PropietarioTabla;
-    @FXML
-    private ComboBox<String> seleccioneUsuario;
+    @FXML private Label label;
+    @FXML private Button atras;
+    @FXML private TableView<?> TablaPPT;
+    @FXML private TableColumn<?, ?> NombreTabla;
+    @FXML private TableColumn<?, ?> ColumnaTabla;
+    @FXML private TableColumn<?, ?> PermisosTabla;
+    @FXML private TableColumn<?, ?> PropietarioTabla;
+    @FXML private ComboBox<String> seleccioneUsuario;
     
-     private List<String> usernames = new ArrayList<>();
+    private List<String> usernames = new ArrayList<>();
     private List<String> tableNames = new ArrayList<>();
     private List<String> columnNames = new ArrayList<>();
     private List<String> permisoName = new ArrayList<>();
@@ -58,10 +40,9 @@ public class Controller_PermisosPropietariosTablas implements Initializable {
     
     
     /**
-     * Initializes the controller class.
+     * Constructor
      */
-    /* Constructor*/
-public Controller_PermisosPropietariosTablas() throws SQLException{
+    public Controller_PermisosPropietariosTablas() throws SQLException{
         Connection conex = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -72,7 +53,6 @@ public Controller_PermisosPropietariosTablas() throws SQLException{
             while(rs.next()){
                 usernames.add(rs.getString("USERNAME"));
             }
-            
         }catch (SQLException ex){
             System.out.println(ex.toString());
         }finally{
@@ -81,11 +61,12 @@ public Controller_PermisosPropietariosTablas() throws SQLException{
             if(conex != null) conex.close();
         }
     }
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
+    // Method to initialice view
+    @FXML
+    public void initialize() {
         addUsers();
-    }    
+    }
 
     @FXML
     private void onClick_Atras(ActionEvent event) throws IOException {
@@ -94,39 +75,33 @@ public Controller_PermisosPropietariosTablas() throws SQLException{
         // Launch main activity
         main.changeScene("/views/Pantalla_Inicio.fxml");
     }
-     public void addUsers(){
-        if(seleccioneUsuario.getItems().size() > 0){
-            seleccioneUsuario.getItems().clear();
-        }
+
+    public void addUsers() {
+        seleccioneUsuario.getItems().clear();
         seleccioneUsuario.getItems().addAll(usernames);
-        System.out.println("anadiendo usuarios");
     }
+
     @FXML
-   private void selectUser(ActionEvent event) throws SQLException {
-       
-       
-       
-       
-        
+    private void selectUser(ActionEvent event) throws SQLException {
         selectedUser = seleccioneUsuario.getValue();
         Connection conex = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        tableNames.clear();
-        System.out.println("Seleccion usuario");
+
         try{
             conex = conexion.getConnection();
-            ps = conex.prepareStatement("SELECT table_name FROM user_tab_privs WHERE grantee= ?");
+            ps = conex.prepareStatement("SELECT TABLE_NAME, PRIVILEGE, OWNER FROM USER_TAB_PRIVS WHERE GRANTEE = ?");
+            // ps = conex.prepareStatement("SELECT table_name FROM user_tab_privs");
             ps.setString(1, selectedUser);
             rs = ps.executeQuery();
+            int res = 0;
             while(rs.next()){
-                System.out.println(rs.getString("TABLE_NAME"));
+                res++;
                 tableNames.add(rs.getString("TABLE_NAME"));
-                
             }
-            /*addTables();*/
+            System.out.println(res + " results");
         }catch (SQLException ex){
-            System.out.println(ex.toString());
+            ex.printStackTrace();
         }finally{
             if(rs != null) rs.close();
             if(ps != null) ps.close();
