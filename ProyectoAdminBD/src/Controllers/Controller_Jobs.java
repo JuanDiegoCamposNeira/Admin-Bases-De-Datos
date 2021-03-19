@@ -10,10 +10,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -152,12 +149,20 @@ public class Controller_Jobs {
             while(rs.next()){
                 // Check if the job name that the user input exists
                 if (rs.getString("JOB_NAME").equals(jobName)) {
+                    // Prepare sql string command
                     String owner = rs.getString("OWNER");
                     String jobToChangeState = owner + "." + jobName;
-                    String sqlCommand = "EXECUTE dbms_scheduler." + jobState + "('" + jobToChangeState + "')";
-                    // Execute change of state in job
-                    ps = conex.prepareStatement(sqlCommand);
-                    if (ps.executeUpdate() != 1) System.out.println("Error executing command");
+                    String sqlCommand = "dbms_scheduler." + jobState + "('" + jobToChangeState + "')";
+                    System.out.println(sqlCommand);
+
+                    // Execute sql command
+                    String query = "{call " + sqlCommand + "}";
+                    CallableStatement statement = conex.prepareCall(query);
+                    statement.execute();
+
+                    // Inform the user
+
+
                     // Get all the information fields
                     jobInformation = "------ Job ------ \n";
                     jobInformation += "OWNER : " + owner + "\n";
