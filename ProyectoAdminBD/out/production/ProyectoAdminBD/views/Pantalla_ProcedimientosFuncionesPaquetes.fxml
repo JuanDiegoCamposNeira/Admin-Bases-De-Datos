@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="511.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Controller_ProcedimientosFuncionesPaquetes">
+<AnchorPane id="AnchorPane" prefHeight="486.0" prefWidth="888.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Controller_ProcedimientosFuncionesPaquetes">
    <children>
-      <Label layoutX="184.0" layoutY="27.0" text="Procedimiento Funciones Paquetes" textFill="#271bd2">
+      <ComboBox fx:id="seleccioneUsuario" layoutX="376.0" layoutY="74.0" onAction="#selectUser" prefWidth="150.0" promptText="Seleecione usuario" />
+      <Button fx:id="atras" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#onClick_Atras" text="Atrás" />
+      <Label layoutX="265.0" layoutY="19.0" text="Procedimiento Funciones Paquetes" textFill="#271bd2">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <MenuButton layoutX="50.0" layoutY="135.0" mnemonicParsing="false" text="Seleccione usuario">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
-        </items>
-      </MenuButton>
-      <TableView layoutX="279.0" layoutY="120.0" prefHeight="340.0" prefWidth="422.0">
+      <TableView fx:id="tablaPaquetes" layoutX="24.0" layoutY="124.0" prefHeight="340.0" prefWidth="269.0">
         <columns>
-          <TableColumn prefWidth="28.800048828125" text="#" />
-          <TableColumn prefWidth="114.4000244140625" text="Paquetes" />
-            <TableColumn prefWidth="95.19998168945312" text="Funciones" />
-            <TableColumn prefWidth="87.20001220703125" text="Procedimiento" />
-            <TableColumn prefWidth="95.20004882812498" text="Estado" />
+          <TableColumn fx:id="paquetes" prefWidth="165.0" text="Paquetes" />
+            <TableColumn fx:id="estadoPaquetes" prefWidth="103.0" text="Estado" />
         </columns>
       </TableView>
-      <Button fx:id="atras" layoutX="24.0" layoutY="19.0" mnemonicParsing="false" onAction="#onClick_Atras" text="Atrás" />
+      <TableView fx:id="tablaFunciones" layoutX="316.0" layoutY="124.0" prefHeight="340.0" prefWidth="269.0">
+         <columns>
+            <TableColumn fx:id="funciones" prefWidth="165.0" text="Funciones" />
+            <TableColumn fx:id="estadoFunciones" prefWidth="103.0" text="Estado" />
+         </columns>
+      </TableView>
+      <TableView fx:id="tablaProcedimientos" layoutX="602.0" layoutY="124.0" prefHeight="340.0" prefWidth="269.0">
+         <columns>
+            <TableColumn fx:id="procedimientos" prefWidth="165.0" text="Procedimientos" />
+            <TableColumn fx:id="estadoProcedimientos" prefWidth="103.0" text="Estado" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>
