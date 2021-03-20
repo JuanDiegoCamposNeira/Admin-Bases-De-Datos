@@ -1,8 +1,6 @@
 package Entities;
 
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.TableColumn;
 
 public class Tabla {
     /**
@@ -13,7 +11,7 @@ public class Tabla {
     private SimpleStringProperty field;
     // Attributes for view 'Tablespace'
     private SimpleStringProperty tablespaceName;
-    private SimpleStringProperty tablespaceOccupiedSpace;
+    private SimpleStringProperty tablespaceTotalSpace;
     private SimpleStringProperty tablespaceFreeSpace;
 
     /**
@@ -25,9 +23,9 @@ public class Tabla {
         this.field = new SimpleStringProperty(field);
     }
     // Constructor for view 'Tablespace'
-    public Tabla(String name, String occupiedSpace, String freeSpace) {
+    public Tabla(String name, String totalSpace, String freeSpace) {
         this.tablespaceName = new SimpleStringProperty(name);
-        this.tablespaceOccupiedSpace = new SimpleStringProperty(occupiedSpace);
+        this.tablespaceTotalSpace = new SimpleStringProperty(totalSpace);
         this.tablespaceFreeSpace = new SimpleStringProperty(freeSpace);
     }
 
@@ -39,6 +37,6 @@ public class Tabla {
     public String getField() { return field.get(); }
     // Getters for view 'Tablespace'
     public String getTablespaceName() { return tablespaceName.get(); }
-    public String getTablespaceOccupiedSpace() { return tablespaceOccupiedSpace.get(); }
+    public String getTablespaceTotalSpace() { return tablespaceTotalSpace.get(); }
     public String getTablespaceFreeSpace() { return tablespaceFreeSpace.get(); }
 }

@@ -5,7 +5,6 @@ import Main.Main;
 import acceso_datos.conexion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,10 +23,10 @@ public class Controller_Tablespace {
     /**
      * Get the elements in the view
      */
-    @FXML TableView<Object> tableTablespace;
-    @FXML TableColumn<Object, String> nombreTablespace;
-    @FXML TableColumn<Object, String> espacioLibre;
-    @FXML TableColumn<Object, String> espacioOcupado;
+    @FXML TableView<Tabla> tableTablespace;
+    @FXML TableColumn<Tabla, String> nombreTablespace;
+    @FXML TableColumn<Tabla, String> espacioLibre;
+    @FXML TableColumn<Tabla, String> espacioTotal;
 
     /**
      * Methods for the elements
@@ -50,7 +49,7 @@ public class Controller_Tablespace {
         ArrayList<ArrayList<String>> tablespace = new ArrayList<ArrayList<String>>();
 
         /**
-         * Query to get the space occupied by all tablespaces in the DB
+         * Query to get the total space of all tablespaces in the DB
          */
         try{
             // Make DB connection
@@ -62,12 +61,12 @@ public class Controller_Tablespace {
             // Traverse results
             while(rs.next()){
                 // Create ArrayList to store the name and the occupied space
-                ArrayList<String> occupiedSpace = new ArrayList<String>();
+                ArrayList<String> totalSpace = new ArrayList<String>();
                 // Get the results
-                occupiedSpace.add(rs.getString("TABLESPACE_NAME"));
-                occupiedSpace.add(String.valueOf(rs.getInt("sum(BYTES)")));
+                totalSpace.add(rs.getString("TABLESPACE_NAME"));
+                totalSpace.add(String.valueOf(rs.getInt("sum(BYTES)")));
                 // Add occupied space to tablespace Array
-                tablespace.add(occupiedSpace);
+                tablespace.add(totalSpace);
             }
         } catch (SQLException ex) {
             System.out.println(ex.toString());
@@ -79,7 +78,7 @@ public class Controller_Tablespace {
         }
 
         /**
-         * Query to get the free space by all tablespaces in the DB
+         * Query to get the free space occupied by all tablespaces in the DB
          */
         try{
             // Make DB connection
@@ -107,16 +106,20 @@ public class Controller_Tablespace {
             if(ps != null) ps.close();
             if(conex != null) conex.close();
         }
-
+        for (ArrayList<String> t : tablespace) System.out.println(t.get(0) + " ... " + t.get(1) + " ... " + t.get(2));
         // Assign the type of value to get
         nombreTablespace.setCellValueFactory( new PropertyValueFactory<>("TablespaceName") );
         espacioLibre.setCellValueFactory( new PropertyValueFactory<>("TablespaceFreeSpace") );
-        espacioOcupado.setCellValueFactory( new PropertyValueFactory<>("TablespaceOccupiedSpace") );
+        espacioTotal.setCellValueFactory( new PropertyValueFactory<>("TablespaceTotalSpace") );
         // Clear items int the table
         tableTablespace.getItems().clear();
         // Add items to the table
         for (ArrayList<String> t : tablespace) {
-            tableTablespace.getItems().add( new Tabla(t.get(0), t.get(1), t.get(2)) );
+            String tablespaceName = t.get(0);
+            String tablespaceTotalSpace = t.get(1);
+            String tablespaceFreeSpace = t.get(2);
+            Tabla tabla = new Tabla(tablespaceName, tablespaceFreeSpace, String.valueOf(Integer.parseInt(tablespaceTotalSpace) - Integer.parseInt(tablespaceFreeSpace)));
+            tableTablespace.getItems().add(tabla);
         }
     }
 

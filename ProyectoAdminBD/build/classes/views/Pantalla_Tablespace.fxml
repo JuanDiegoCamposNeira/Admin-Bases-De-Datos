@@ -18,7 +18,7 @@
                 <TableColumn prefWidth="81.0" text="id" />
                 <TableColumn fx:id="nombreTabla" prefWidth="168.0" text="Nombre Tablespace" />
                   <TableColumn fx:id="espacioLibre" prefWidth="159.0" text="Espacio libre" />
-                  <TableColumn fx:id="espacioOcupado" prefWidth="162.0" text="Espacio ocupado" />
+                  <TableColumn fx:id="espacioTotal" prefWidth="162.0" text="Espacio ocupado" />
               </columns>
             </TableView>
             <Text layoutX="215.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Espacio de los Tablespace" wrappingWidth="220.6171875">
