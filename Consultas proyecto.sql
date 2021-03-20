@@ -60,9 +60,11 @@ SELECT OWNER, JOB_NAME, JOB_CLASS, COMMENTS, ENABLED, CREDENTIAL_NAME, DESTINATI
 FROM ALL_SCHEDULER_JOBS;
 
 --Deshabilitar el job
-EXECUTE dbms_scheduler.disable('ORACLE_OCM.MGMT_CONFIG_JOB');
+EXECUTE dbms_scheduler.disable('ORACLE_OCM.MGMT_CONFIG_JOB'); 
+
 --Habilitar el job
 EXECUTE dbms_scheduler.enable('ORACLE_OCM.MGMT_CONFIG_JOB');
+EXEC dbms_scheduler.enable('ORACLE_OCM.MGMT_CONFIG_JOB')
 
 --------------------------------------------------------------------------------
 -----------------------------PUNTO 4--------------------------------------------

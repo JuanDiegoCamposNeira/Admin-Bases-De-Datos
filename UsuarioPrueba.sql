@@ -38,3 +38,15 @@ GRANT INSERT (val) ON MY_TABLE2 TO USUARIO1;
 GRANT CREATE PROCEDURE TO USUARIO2; 
 
 
+insert into nota values (112, 123); 
+commit; 
+
+
+
+
+
+
+
+
+
+
