@@ -52,7 +52,7 @@ public class Controller_TablasUsuario {
         ResultSet rs = null;
         try{
             conex = conexion.getConnection();
-            ps = conex.prepareStatement("SELECT USERNAME FROM all_users");
+            ps = conex.prepareStatement("SELECT USERNAME FROM DBA_USERS");
             rs = ps.executeQuery();
             while(rs.next()){
                 usernames.add(rs.getString("USERNAME"));
@@ -113,7 +113,7 @@ public class Controller_TablasUsuario {
         tableNames.clear();
         try{
             conex = conexion.getConnection();
-            ps = conex.prepareStatement("SELECT table_name FROM all_tables WHERE owner = ?");
+            ps = conex.prepareStatement("SELECT table_name FROM DBA_TABLES WHERE owner = ?");
             ps.setString(1, selectedUser);
             rs = ps.executeQuery();
             while(rs.next()){
@@ -138,7 +138,7 @@ public class Controller_TablasUsuario {
         columnNames.clear();
         try{
             conex = conexion.getConnection();
-            ps = conex.prepareStatement("SELECT COLUMN_NAME FROM all_tab_columns WHERE owner = ? AND TABLE_NAME = ?");
+            ps = conex.prepareStatement("SELECT COLUMN_NAME FROM DBA_TAB_COLUMNS WHERE owner = ? AND TABLE_NAME = ?");
             ps.setString(1, selectedUser);
             ps.setString(2, selectedTable);
             rs = ps.executeQuery();
@@ -149,7 +149,7 @@ public class Controller_TablasUsuario {
             /**
              * Query to get the constraints of the table
              */
-            ps = conex.prepareStatement("SELECT SEARCH_CONDITION FROM all_constraints WHERE OWNER = ? AND TABLE_NAME = ? AND SEARCH_CONDITION IS NOT NULL");
+            ps = conex.prepareStatement("SELECT SEARCH_CONDITION FROM DBA_CONSTRAINTS WHERE OWNER = ? AND TABLE_NAME = ? AND SEARCH_CONDITION IS NOT NULL");
             ps.setString(1, selectedUser);
             ps.setString(2, selectedTable);
             rs = ps.executeQuery();
@@ -167,7 +167,7 @@ public class Controller_TablasUsuario {
             /**
              * Query to get the comments of the table
              */
-            ps = conex.prepareStatement("SELECT COMMENTS FROM all_tab_comments WHERE OWNER= ? AND TABLE_NAME= ? AND COMMENTS IS NOT NULL");
+            ps = conex.prepareStatement("SELECT COMMENTS FROM dba_tab_comments WHERE OWNER= ? AND TABLE_NAME= ? AND COMMENTS IS NOT NULL");
             ps.setString(1, selectedUser);
             ps.setString(2, selectedTable);
             rs = ps.executeQuery();
@@ -204,7 +204,7 @@ public class Controller_TablasUsuario {
             // Stablish connection
             conex = conexion.getConnection();
             // Prepare sql query
-            ps = conex.prepareStatement("SELECT INDEX_NAME, TABLE_NAME, COLUMN_NAME  FROM ALL_IND_COLUMNS WHERE INDEX_OWNER = ? AND TABLE_NAME = ?");
+            ps = conex.prepareStatement("SELECT INDEX_NAME, TABLE_NAME, COLUMN_NAME  FROM DBA_IND_COLUMNS WHERE INDEX_OWNER = ? AND TABLE_NAME = ?");
             // Set query arguments
             ps.setString(1, selectedUser);
             ps.setString(2, selectedTable);
@@ -248,7 +248,7 @@ public class Controller_TablasUsuario {
              * Query to get  the type of the attributes of the table
              */
             conex = conexion.getConnection();
-            ps = conex.prepareStatement("SELECT DATA_TYPE FROM all_tab_columns WHERE OWNER = ? AND TABLE_NAME = ? AND COLUMN_NAME = ?");
+            ps = conex.prepareStatement("SELECT DATA_TYPE FROM dba_tab_columns WHERE OWNER = ? AND TABLE_NAME = ? AND COLUMN_NAME = ?");
             ps.setString(1, selectedUser);
             ps.setString(2, selectedTable);
             ps.setString(3, selectedColumn);
@@ -281,7 +281,7 @@ public class Controller_TablasUsuario {
             // Get the connection
             conex = conexion.getConnection();
             // Prepare SQL statement
-            ps = conex.prepareStatement("SELECT COMMENTS FROM all_col_comments WHERE OWNER = ? AND TABLE_NAME = ? AND COLUMN_NAME = ? AND COMMENTS IS NOT NULL");
+            ps = conex.prepareStatement("SELECT COMMENTS FROM dba_col_comments WHERE OWNER = ? AND TABLE_NAME = ? AND COLUMN_NAME = ? AND COMMENTS IS NOT NULL");
             // Add parameters to the query
             ps.setString(1, selectedUser);
             ps.setString(2, selectedTable);

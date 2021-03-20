@@ -1,7 +1,6 @@
 package Controllers;
 
 import Entities.TablaEspacioUsuarios;
-import Entities.TablaPermisosPropietarios;
 import Main.Main;
 import acceso_datos.conexion;
 import javafx.event.ActionEvent;
@@ -10,7 +9,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.awt.image.AreaAveragingScaleFilter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

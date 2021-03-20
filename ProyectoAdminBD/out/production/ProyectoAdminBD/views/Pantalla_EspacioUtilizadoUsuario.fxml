@@ -9,18 +9,17 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Controller_EspacioUtilizadoPorUsuario">
    <children>
-      <Label layoutX="120.0" layoutY="30.0" text="Espacio utilizado por cada usuario" textFill="#1c39df">
+      <Label layoutX="120.0" layoutY="21.0" text="Espacio utilizado por cada usuario">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TableView layoutX="88.0" layoutY="94.0" prefHeight="250.0" prefWidth="424.0">
+      <Button fx:id="atras" layoutX="26.0" layoutY="26.0" mnemonicParsing="false" onAction="#onClick_Atras" text="Atrás" />
+      <TableView fx:id="tablaEspacioUsuarios" layoutX="51.0" layoutY="91.0" prefHeight="282.0" prefWidth="499.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="ID" />
-          <TableColumn prefWidth="175.20001220703125" text="Nombre usuario" />
-            <TableColumn prefWidth="172.79998779296875" text="Espacio utilizado" />
+          <TableColumn fx:id="nombreUsuario" prefWidth="261.0" text="Nombre usuario" />
+            <TableColumn fx:id="espacioUtilizado" prefWidth="237.0" text="Espacio utilizado" />
         </columns>
       </TableView>
-      <Button fx:id="atras" layoutX="29.0" layoutY="18.0" mnemonicParsing="false" onAction="#onClick_Atras" text="Atrás" />
    </children>
 </AnchorPane>

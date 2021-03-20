@@ -103,7 +103,7 @@ public class Controller_Jobs {
             // Make DB connection
             conex = conexion.getConnection();
             // Prepare SQL statement
-            ps = conex.prepareStatement("SELECT OWNER, JOB_NAME, JOB_CLASS, COMMENTS, ENABLED, CREDENTIAL_NAME, DESTINATION, PROGRAM_NAME, JOB_TYPE, JOB_ACTION, NUMBER_OF_ARGUMENTS, SCHEDULE_OWNER, SCHEDULE_NAME, SCHEDULE_TYPE, START_DATE, REPEAT_INTERVAL, END_DATE FROM ALL_SCHEDULER_JOBS");
+            ps = conex.prepareStatement("SELECT OWNER, JOB_NAME, JOB_CLASS, COMMENTS, ENABLED, CREDENTIAL_NAME, DESTINATION, PROGRAM_NAME, JOB_TYPE, JOB_ACTION, NUMBER_OF_ARGUMENTS, SCHEDULE_OWNER, SCHEDULE_NAME, SCHEDULE_TYPE, START_DATE, REPEAT_INTERVAL, END_DATE FROM DBA_SCHEDULER_JOBS");
             // Execute query
             rs = ps.executeQuery();
             // Traverse results
@@ -140,7 +140,7 @@ public class Controller_Jobs {
             // Make DB connection
             conex = conexion.getConnection();
             // Prepare SQL statement
-            ps = conex.prepareStatement("SELECT OWNER, JOB_NAME, JOB_CLASS, COMMENTS, ENABLED, CREDENTIAL_NAME, DESTINATION, PROGRAM_NAME, JOB_TYPE, JOB_ACTION, NUMBER_OF_ARGUMENTS, SCHEDULE_OWNER, SCHEDULE_NAME, SCHEDULE_TYPE, START_DATE, REPEAT_INTERVAL, END_DATE FROM ALL_SCHEDULER_JOBS");
+            ps = conex.prepareStatement("SELECT OWNER, JOB_NAME, JOB_CLASS, COMMENTS, ENABLED, CREDENTIAL_NAME, DESTINATION, PROGRAM_NAME, JOB_TYPE, JOB_ACTION, NUMBER_OF_ARGUMENTS, SCHEDULE_OWNER, SCHEDULE_NAME, SCHEDULE_TYPE, START_DATE, REPEAT_INTERVAL, END_DATE FROM DBA_SCHEDULER_JOBS");
             // Execute query
             rs = ps.executeQuery();
             // Traverse results

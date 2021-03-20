@@ -52,7 +52,7 @@ public class Controller_PermisosPropietariosTablas {
         ResultSet rs = null;
         try {
             conex = conexion.getConnection();
-            ps = conex.prepareStatement("SELECT USERNAME FROM all_users");
+            ps = conex.prepareStatement("SELECT USERNAME FROM DBA_USERS");
             rs = ps.executeQuery();
             while(rs.next()){
                 usernames.add(rs.getString("USERNAME"));
