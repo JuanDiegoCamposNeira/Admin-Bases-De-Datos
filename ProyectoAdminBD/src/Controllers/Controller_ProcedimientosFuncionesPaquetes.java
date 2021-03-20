@@ -193,8 +193,6 @@ public class Controller_ProcedimientosFuncionesPaquetes {
         tablaFunciones.getItems().clear();
         tablaProcedimientos.getItems().clear();
 
-        System.out.println(listaFunciones.size() + " ... " + listaProcedimientos.size() + " ... " + listaPaquetes.size());
-
         // Add results of the queries to the view
         listaPaquetes.forEach( elemento -> tablaPaquetes.getItems().add(elemento) );
         listaFunciones.forEach( elemento -> tablaFunciones.getItems().add(elemento) );

@@ -105,7 +105,7 @@ public class Controller_PermisosPropietariosTablas {
         /**
          * Query to get the permissions of the tables
          */
-        try{
+        try {
             conex = conexion.getConnection();
             ps = conex.prepareStatement("SELECT TABLE_NAME, PRIVILEGE, OWNER FROM DBA_TAB_PRIVS WHERE GRANTEE = ? ");
             ps.setString(1, selectedUser);
@@ -122,9 +122,9 @@ public class Controller_PermisosPropietariosTablas {
                 // Create class and save it in 'permisosTablas'
                 permisosTablas.add( new TablaPermisosPropietarios(nombreTabla, privilegio, propietario) );
             }
-        }catch (SQLException ex){
+        } catch (SQLException ex){
             ex.printStackTrace();
-        }finally{
+        } finally{
             if(rs != null) rs.close();
             if(ps != null) ps.close();
             if(conex != null)conex.close();
