@@ -8,22 +8,27 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="481.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Controller_PermisosPropietariosTablas">
+<AnchorPane id="AnchorPane" prefHeight="451.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Controller_PermisosPropietariosTablas">
     <children>
-        <Label fx:id="label" layoutX="115.0" layoutY="61.0" minHeight="16" minWidth="69" text="PERMISOS Y PROPIETARIOS DE LAS TABLAS " textAlignment="JUSTIFY" textFill="#271baf" textOverrun="CENTER_WORD_ELLIPSIS">
+      <ComboBox fx:id="seleccioneUsuario" layoutX="262.0" layoutY="75.0" onAction="#selectUser" prefHeight="25.0" prefWidth="166.0" promptText="Seleccione un usuario" />
+        <Label fx:id="label" layoutX="124.0" layoutY="27.0" minHeight="16" minWidth="69" text="PERMISOS Y PROPIETARIOS DE LAS TABLAS " textAlignment="JUSTIFY" textOverrun="CENTER_WORD_ELLIPSIS">
          <font>
             <Font name="Yu Gothic Medium" size="22.0" />
          </font></Label>
       <Button fx:id="atras" layoutX="23.0" layoutY="27.0" mnemonicParsing="false" onAction="#onClick_Atras" text="Atrás" />
-      <TableView fx:id="TablaPPT" layoutX="196.0" layoutY="138.0" prefHeight="284.0" prefWidth="425.0">
+      <TableView fx:id="tablaPermisosTablas" layoutX="23.0" layoutY="138.0" prefHeight="284.0" prefWidth="322.0">
         <columns>
-          <TableColumn fx:id="NombreTabla" prefWidth="111.0" text="Nombre Tabla" />
-            <TableColumn fx:id="ColumnaTabla" prefWidth="104.0" text="Columna" />
-            <TableColumn fx:id="PermisosTabla" prefWidth="93.0" text="Permisos" />
-            <TableColumn fx:id="PropietarioTabla" prefWidth="116.0" text="Propietario" />
+          <TableColumn fx:id="tablasNombreTabla" prefWidth="111.0" text="Nombre Tabla" />
+            <TableColumn fx:id="tablasPermisos" prefWidth="93.0" text="Permisos" />
+            <TableColumn fx:id="tablasPropietario" prefWidth="116.0" text="Propietario" />
         </columns>
       </TableView>
-      <ComboBox fx:id="seleccioneUsuario" layoutX="23.0" layoutY="125.0" onAction="#selectUser" prefWidth="150.0" promptText="Seleccione un usuario" />
+      <TableView fx:id="tablaPermisosColumnas" layoutX="365.0" layoutY="138.0" prefHeight="284.0" prefWidth="322.0">
+         <columns>
+            <TableColumn fx:id="columnasNombreColumna" prefWidth="111.0" text="Nombre Columna" />
+            <TableColumn fx:id="columnasPermisosColumnas" prefWidth="93.0" text="Permisos" />
+            <TableColumn fx:id="columnasPropietarioColumna" prefWidth="116.0" text="Propietario" />
+         </columns>
+      </TableView>
     </children>
 </AnchorPane>
-

@@ -50,16 +50,16 @@ public class Controller_PermisosPropietariosTablas {
         Connection conex = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        try{
+        try {
             conex = conexion.getConnection();
             ps = conex.prepareStatement("SELECT USERNAME FROM all_users");
             rs = ps.executeQuery();
             while(rs.next()){
                 usernames.add(rs.getString("USERNAME"));
             }
-        }catch (SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(ex.toString());
-        }finally{
+        } finally {
             if(rs != null) rs.close();
             if(ps != null) ps.close();
             if(conex != null) conex.close();

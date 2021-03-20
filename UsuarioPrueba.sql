@@ -26,3 +26,15 @@ commit;
 
 -- All tables inside my user
 SELECT * FROM ALL_TAB_COMMENTS WHERE owner = 'USUARIO1' AND COMMENTS IS NOT NULL; 
+
+CREATE TABLE MY_TABLE2 (
+    val NUMBER(3), 
+    des VARCHAR(20)
+); 
+
+GRANT INSERT (val) ON MY_TABLE2 TO USUARIO1; 
+
+-- Grant to create packages and procedures
+GRANT CREATE PROCEDURE TO USUARIO2; 
+
+
