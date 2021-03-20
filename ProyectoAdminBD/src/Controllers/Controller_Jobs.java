@@ -1,6 +1,5 @@
 package Controllers;
 
-import Entities.Job;
 import Main.Main;
 import acceso_datos.conexion;
 import javafx.event.ActionEvent;
@@ -11,7 +10,6 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -159,9 +157,6 @@ public class Controller_Jobs {
                     String query = "{call " + sqlCommand + "}";
                     CallableStatement statement = conex.prepareCall(query);
                     statement.execute();
-
-                    // Inform the user
-
 
                     // Get all the information fields
                     jobInformation = "------ Job ------ \n";

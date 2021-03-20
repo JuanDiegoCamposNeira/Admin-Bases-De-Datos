@@ -65,7 +65,7 @@ public class Controller_Tablespace {
                 // Get the results
                 totalSpace.add(rs.getString("TABLESPACE_NAME"));
                 totalSpace.add(String.valueOf(rs.getInt("sum(BYTES)")));
-                // Add occupied space to tablespace Array
+                // Add total space to tablespace Array
                 tablespace.add(totalSpace);
             }
         } catch (SQLException ex) {
